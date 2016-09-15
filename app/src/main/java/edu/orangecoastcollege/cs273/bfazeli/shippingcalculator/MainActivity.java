@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         // Connect the controller with the widgets in the application
         weightEditText  = (EditText) findViewById(R.id.weightEditText);
         baseCostOutput  = (TextView) findViewById(R.id.baseCostOutput);
-        addedCostOutput = (TextView) findViewById(R.id.totalCostOutput);
+        addedCostOutput = (TextView) findViewById(R.id.addedCostOutput);
         totalCostOutput = (TextView) findViewById(R.id.totalCostOutput);
 
         // Define listener for weightEditText(onTextChanged)
         weightEditText.addTextChangedListener(weightTextChangedListener);
     }
-w
+
     private TextWatcher weightTextChangedListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -48,7 +49,6 @@ w
 
                 double weight = s.length() < 1 ? 0.0 : Double.parseDouble(s.toString());
                 item.setWeight(weight);
-
             } catch (NumberFormatException e) {
 
                 weightEditText.setText("");
@@ -56,10 +56,13 @@ w
 
             // No exception, input is valid
             // 1) Update the baseCostOutput
+            baseCostOutput.setText(currency.format(item.getBaseCost()));
 
             // 2) Update the addedCostOutput
+            addedCostOutput.setText(currency.format(item.getAddedCost()));
 
             // 3) Update the totalCostOutput
+            totalCostOutput.setText(currency.format(item.getTotalCost()));
         }
 
         @Override
