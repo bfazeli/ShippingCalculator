@@ -9,11 +9,11 @@ public class ShipItem {
     private double mAddedCost;
     private double mTotalCost;
 
-    public ShipItem(double weight, double baseCost, double addedCost, double totalCost) {
-        mWeight = weight;
-        mBaseCost = baseCost;
-        mAddedCost = addedCost;
-        mTotalCost = totalCost;
+    public ShipItem() {
+        mWeight = 0.0;
+        mBaseCost = 3.0;
+        mAddedCost = 0.0;
+        mTotalCost = 0.0;
     }
 
     public double getWeight() {
@@ -34,5 +34,13 @@ public class ShipItem {
 
     public void setWeight(double weight) {
         mWeight = weight;
+        double tempWeight = mWeight;
+
+        while (Double.compare(tempWeight, 16.0) > 0) {
+            mAddedCost += .50;
+            tempWeight -= 4;
+        }
+
+        mTotalCost += mAddedCost;
     }
 }
