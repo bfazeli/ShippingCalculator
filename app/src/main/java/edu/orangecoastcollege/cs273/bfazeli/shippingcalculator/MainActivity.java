@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // Define listener for weightEditText(onTextChanged)
         weightEditText.addTextChangedListener(weightTextChangedListener);
     }
-
+w
     private TextWatcher weightTextChangedListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
